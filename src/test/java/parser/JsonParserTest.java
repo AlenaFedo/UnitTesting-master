@@ -47,7 +47,6 @@ public class JsonParserTest {
         });
     }
 
-
     @AfterEach
     public void clearData() {
         try {

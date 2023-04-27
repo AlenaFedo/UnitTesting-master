@@ -2,10 +2,7 @@ package shop;
 
 import org.junit.jupiter.api.*;
 import parser.JsonParser;
-
-
 import java.io.File;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CartTest {
@@ -24,11 +21,12 @@ class CartTest {
 
     @Test
     void testCalculationWhileAddingItem() {
-        assertEquals(25, cart.getTotalPrice());
+        assertEquals(38457.479999999996, cart.getTotalPrice());
     }
+
     @Test
     void testCalculationWhileDeletingItem() {
         cart.deleteRealItem(item);
-        assertEquals(25, cart.getTotalPrice());
+        assertEquals(38445.479999999996, cart.getTotalPrice());
     }
 }

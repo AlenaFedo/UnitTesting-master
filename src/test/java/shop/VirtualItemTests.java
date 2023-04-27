@@ -1,8 +1,5 @@
 package shop;
-
 import org.junit.jupiter.api.*;
-
-
 
 class VirtualItemTests {
     private VirtualItem item;
@@ -12,6 +9,7 @@ class VirtualItemTests {
         item = new VirtualItem();
         item.setSizeOnDisk(85000);
     }
+
     @Test
     void testVirtualItem() {
         Assertions.assertTrue(item.toString().contains("Size on disk: 85000"));
