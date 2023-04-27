@@ -1,41 +1,34 @@
 package shop;
 
 import org.junit.jupiter.api.*;
+import parser.JsonParser;
 
+
+import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CartTest {
-    @BeforeAll
-    static void setup() {
-        System.out.println("CartTests: @BeforeAll executed");
-    }
+
+    private Cart cart;
+    private RealItem item;
+
     @BeforeEach
     void setUp() {
-    }
-
-    @Test
-    void getCartName() {
-        Cart cart = new Cart("cart1");
-        assertEquals("cart1", cart.getCartName(), "CartName should equal 'cart1'");
-    }
-
-    @Test
-    void getTotalPrice() {
-        Cart cart = new Cart("cart1");
-        RealItem item = new RealItem();
-        item.setPrice(1000);
+        JsonParser parser = new JsonParser();
+        cart = parser.readFromFile(new File("src/main/resources/andrew-cart.json"));
+        item = new RealItem();
+        item.setPrice(10);
         cart.addRealItem(item);
-        assertEquals(1200, cart.getTotalPrice(), "TotalPrice should equal 1200");
     }
 
-    @AfterAll
-    static void tear() {
-        System.out.println("CartTests: @AfterAll executed");
+    @Test
+    void testCalculationWhileAddingItem() {
+        assertEquals(25, cart.getTotalPrice());
     }
-
-    @AfterEach
-    void tearDown() {
+    @Test
+    void testCalculationWhileDeletingItem() {
+        cart.deleteRealItem(item);
+        assertEquals(25, cart.getTotalPrice());
     }
-
 }
