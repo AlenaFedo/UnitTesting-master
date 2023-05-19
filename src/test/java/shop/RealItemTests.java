@@ -1,11 +1,16 @@
 package shop;
-import org.junit.jupiter.api.*;
 
-class RealItemTests {
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertTrue;
+
+public class RealItemTests {
 
     private RealItem item;
 
-    @BeforeEach
+    @BeforeMethod
     public void init() {
         item = new RealItem();
         item.setWeight(1000);
@@ -13,6 +18,6 @@ class RealItemTests {
 
     @Test
     void testRealItem() {
-        Assertions.assertTrue(item.toString().contains("Weight: 1000"));
+        assertTrue(item.toString().contains("Weight: 1000"));
     }
 }

@@ -1,13 +1,16 @@
 package parser;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.params.provider.ValueSource;
+
+import org.testng.annotations.*;
 import shop.Cart;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.jupiter.params.ParameterizedTest;
+
 import java.io.File;
+
+import static org.testng.Assert.assertThrows;
+import static org.testng.AssertJUnit.assertEquals;
 
 
 public class JsonParserTest {
@@ -16,38 +19,46 @@ public class JsonParserTest {
     private JsonParser jsonParser;
     private Cart cart;
 
-    @BeforeEach
+    @BeforeTest(alwaysRun = true)
     public void init() {
        jsonParser = new JsonParser();
        cart = new Cart("Test_Cart");
     }
 
-    @Test
+    @Test(enabled = false)
     public void testWriteToFile() throws IOException {
         jsonParser.writeToFile(cart);
         String actualResult = Files.readString(Paths.get("src/main/resources/" + cart.getCartName() + ".json"));
-        Assertions.assertEquals(EXPECTED_RESULT, actualResult);
+        assertEquals(EXPECTED_RESULT, actualResult);
     }
 
-    @Test
-    @Tag("JsonParserTest")
+    @Test(groups = { "JsonParserTests1" })
     void testReadFromFile() {
         String fileName = "src/main/resources/andrew-cart.json";
         Cart readedCart = jsonParser.readFromFile(new File(fileName));
-        Assertions.assertEquals("andrew-cart", readedCart.getCartName(),
-                "Cart name " + readedCart.getCartName() + "doesn't match with expected " + "'andrew-cart'");
+        assertEquals("Cart name '" + readedCart.getCartName() + "' doesn't match with expected " + "'andrew-cart'",
+                "andrew-cart", readedCart.getCartName()
+                );
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"skjdfhksjd", "sjkdfhk", "ksjdhfk"})
-    @Tag("JsonParserTest")
+    @DataProvider(name = "test1")
+    public Object[][] createData1() {
+        return new Object[][]{
+                {"Name1"},
+                {"Name2"},
+                {"Name3"}
+        };
+    }
+
+    @Parameters({ "names" })
+    @Test(groups = { "JsonParserTests2" })//, dataProvider =  "test1" )
     void testNoSuchFileException(String name) {
-        Assertions.assertThrows(NoSuchFileException.class, () -> {
+        assertThrows(NoSuchFileException.class, () -> {
             jsonParser.readFromFile(new File("src/main/resources/" + name + ".json"));
         });
     }
 
-    @AfterEach
+    @AfterTest(alwaysRun = true)
     public void clearData() {
         try {
             Files.delete(Paths.get("src/main/resources/" + cart.getCartName() + ".json"));

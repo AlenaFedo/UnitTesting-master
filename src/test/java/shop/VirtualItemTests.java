@@ -1,10 +1,15 @@
 package shop;
-import org.junit.jupiter.api.*;
+
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 class VirtualItemTests {
     private VirtualItem item;
 
-    @BeforeEach
+    @BeforeMethod
     public void init() {
         item = new VirtualItem();
         item.setSizeOnDisk(85000);
@@ -12,7 +17,7 @@ class VirtualItemTests {
 
     @Test
     void testVirtualItem() {
-        Assertions.assertTrue(item.toString().contains("Size on disk: 85000"));
+        assertTrue(item.toString().contains("Size on disk: 85000"));
     }
 
 }
