@@ -3,12 +3,10 @@
 
 <suite name = "testing">
     <test name = "test3">
-
         <classes>
             <class name = "shop.CartTest" />
             <class name = "shop.RealItemTests" />
             <class name = "shop.VirtualItemTests" />
         </classes>
-
     </test>
 </suite>

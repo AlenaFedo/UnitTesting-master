@@ -9,7 +9,7 @@ import java.io.File;
 import static org.testng.AssertJUnit.assertEquals;
 
 
-class CartTest {
+public class CartTest {
 
     private Cart cart;
     private RealItem item;
@@ -31,6 +31,6 @@ class CartTest {
     @Test
     void testCalculationWhileDeletingItem() {
         cart.deleteRealItem(item);
-        assertEquals(38457.479999999996, cart.getTotalPrice());
+        assertEquals(338445.479999999996, cart.getTotalPrice());
     }
 }

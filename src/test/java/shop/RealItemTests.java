@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-class RealItemTests {
+public class RealItemTests {
 
     private RealItem item;
 
