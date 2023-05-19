@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "testing">
+    <test name="test4">
+        <parameter name="names" value="name1"/>
+        <classes>
+            <class name="parser.JsonParserTest" >
+            <methods>
+                <include name="testNoSuchFileException" />
+            </methods>
+        </class>
+        </classes>
+    </test>
+</suite>
