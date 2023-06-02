@@ -1,5 +1,6 @@
 package Task30;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,25 +18,22 @@ public class Locators {
         driver.get("https://mail.yandex.com/");
 
         //Button Login
-        //WebElement login = driver.findElement(By.xpath("//a[contains(@class,'Button2_view_default Button2_size_m')]"));
-        //WebElement login = driver.findElement(By.cssSelector(".Button2_type_link.Button2_view_default"));
-        // WebElement login = driver.findElement(By.linkText("Log in"));
-        //WebElement login = driver.findElement(By.cssSelector("[href='https://passport.yandex.com/auth?retpath=https%3A%2F%2Fmail.yandex.com']"));
-
-        //login.click();
+        Assertions.assertTrue(driver.findElement(By.xpath("//a[contains(@class,'Button2_view_default Button2_size_m')]")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.cssSelector(".Button2_type_link.Button2_view_default")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.linkText("Log in")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.cssSelector("[href='https://passport.yandex.com/auth?retpath=https%3A%2F%2Fmail.yandex.com']")).isDisplayed());
 
         //Buy
-        //WebElement buy = driver.findElement(By.cssSelector(".Button2_view_action Button2_size_m"));
-        //WebElement buy = driver.findElement(By.xpath("//a[contains(@class,'Button2_view_action Button2_size_m')]"));
-        // WebElement buy = driver.findElement(By.linkText("Buy"));
+        Assertions.assertTrue(driver.findElement(By.cssSelector(".Button2_size_m.ActionButton_VXdGh2PasdGWTKaK2Xlzy")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.xpath("//a[contains(@class,'Button2_view_action Button2_size_m')]")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.linkText("Buy")).isDisplayed());
 
+        Assertions.assertTrue(driver.findElement(By.xpath("//span[@class = 'Button2-Text' and text()='Products' ]")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.xpath("//span[@class = 'Button2-Text' and text()='Solutions' ]")).isDisplayed());
+        Assertions.assertTrue(driver.findElement(By.xpath("//span[@class = 'Button2-Text' and text()='Plans' ]")).isDisplayed());
 
-        WebElement products = driver.findElement(By.linkText("Products"));
-        WebElement solutions = driver.findElement(By.linkText("Solutions"));
-        WebElement plans = driver.findElement(By.linkText("Plans"));
+        Assertions.assertTrue(driver.findElement(By.linkText("Get started")).isDisplayed());
 
-        WebElement getStarted = driver.findElement(By.linkText("Get started"));
-
-
+        driver.quit();
     }
 }
