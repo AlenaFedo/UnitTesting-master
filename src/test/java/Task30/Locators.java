@@ -11,4 +11,5 @@ public class Locators {
     public static final By SUBMIT_BUTTON = By.cssSelector("[type='submit']");
     public static final By INBOX = By.xpath("//a[contains(@aria-label, 'Inbox')]");
     public static final String SITE_NAME = "https://mail.yandex.com/";
+    public static final By USER_NAME = By.linkText("sea123alena");
 }
