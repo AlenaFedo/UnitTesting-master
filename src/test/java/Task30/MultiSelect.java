@@ -17,22 +17,22 @@ import java.util.stream.Collectors;
 
 public class MultiSelect {
     private WebDriver driver;
+    private static final String MULTISELECT_PAGE_URL = "https://demo.seleniumeasy.com/basic-select-dropdown-demo.html";
+    private static final By STATES_LIST = By.id("multi-select");
 
     @BeforeEach
     void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         driver.manage().window().maximize();
-        String SITE_NAME = "https://demo.seleniumeasy.com/basic-select-dropdown-demo.html";
-        driver.get(SITE_NAME);
+        driver.get(MULTISELECT_PAGE_URL);
     }
 
 
     @Test
-    public void multiSelect() {
-        WebElement list = driver.findElement(By.id("multi-select"));
+    public void multiSelectTest() {
+        WebElement list = driver.findElement(STATES_LIST);
         Select select = new Select(list);
         List<String> allStates = select.getOptions().stream().map(WebElement::getText).collect(Collectors.toList());
         Collections.shuffle(allStates);

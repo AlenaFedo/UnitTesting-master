@@ -12,24 +12,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitingUser {
     private WebDriver driver;
-
+    private static final String LOADING_DATA_DINAMICALLY_URL = "https://demo.seleniumeasy.com/dynamic-data-loading-demo.html";
+    private static final By GET_NEW_USER_BUTTON = By.cssSelector("[class='btn btn-default']");
+    private static final By USER_DATA = By.xpath("//div[contains(text(),'First')]");
     @BeforeEach
     void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
-        String SITE_NAME = "https://demo.seleniumeasy.com/dynamic-data-loading-demo.html";
-        driver.get(SITE_NAME);
+        driver.get(LOADING_DATA_DINAMICALLY_URL);
     }
 
 
     @Test
-    public void waitingUser() {
-        driver.findElement(By.cssSelector("[class='btn btn-default']")).click();
-
-        By user = By.xpath("//div[contains(text(),'First')]");
-        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(user));
+    public void waitingUserTest() {
+        driver.findElement(GET_NEW_USER_BUTTON).click();
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(USER_DATA));
     }
 
     @AfterEach

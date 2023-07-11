@@ -41,12 +41,7 @@ public class LoginTest {
         userName.sendKeys(USERNAME);
 
         driver.findElement(SUBMIT_BUTTON).click();
-
-        try {
-            Thread.sleep(5000 );//implicity waiting
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Thread.sleep(5000 );//implicity waiting
 
         WebElement password = driver.findElement(PASSWORD_FIELD);
         password.sendKeys(PASSWORD);
