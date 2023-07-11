@@ -5,17 +5,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.concurrent.TimeUnit;
 import static Task30.Locators.*;
 
 public class LoginTest {
 
     public static final String USERNAME = "sea123alena";
-    public static final String PASSWORD = "Bazarevsky1";
+    public static final String PASSWORD = "Bazarevsky2";
     private WebDriver driver;
 
     @BeforeEach
@@ -30,7 +32,7 @@ public class LoginTest {
 
 
     @Test
-    public void loginTest() {
+    public void loginTest() throws InterruptedException {
 
         WebElement login = driver.findElement(LOGIN_BUTTON);
         login.click();
@@ -39,11 +41,14 @@ public class LoginTest {
         userName.sendKeys(USERNAME);
 
         driver.findElement(SUBMIT_BUTTON).click();
+        Thread.sleep(5000 );//implicity waiting
 
         WebElement password = driver.findElement(PASSWORD_FIELD);
         password.sendKeys(PASSWORD);
 
         driver.findElement(SUBMIT_BUTTON).click();
+
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOfElementLocated(USER_NAME));
 
         Assertions.assertTrue(driver.findElement(INBOX).isDisplayed());
     }
