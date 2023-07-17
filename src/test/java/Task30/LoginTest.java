@@ -1,6 +1,7 @@
 package Task30;
 
 import Task30.Pages.LoginPage;
+import Task30.Pages.LogoutPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -33,6 +34,9 @@ public class LoginTest {
 
         LoginPage loginPage = new LoginPage();
         loginPage.loginToYandex();
+
+        LogoutPage logiutPage = new LogoutPage();
+        logiutPage.clickLogout();
     }
 
     @AfterEach
