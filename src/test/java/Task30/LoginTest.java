@@ -1,47 +1,33 @@
 package Task30;
 
-import Task30.Pages.LoginPage;
-import Task30.Pages.LogoutPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
+import page.LoginPage;
+import page.MailPage;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
-import static Task30.Locators.*;
-
-public class LoginTest {
+public class LoginTest extends BaseTest{
     private WebDriver driver;
-
-    @BeforeEach
-    void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = WebDriverSingleton.getInstance();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.manage().window().maximize();
-        driver.get(SITE_NAME);
-    }
+    public static final String USERNAME = "sea123alena";
+    public static final String PASSWORD = "Bazarevsky2";
 
     @Test
-    public void loginToYandexTest() throws InterruptedException {
+    public void loginToYandexMailTest(){
 
         LoginPage loginPage = new LoginPage();
-        loginPage.loginToYandex();
-
-        LogoutPage logiutPage = new LogoutPage();
-        logiutPage.clickLogout();
+        loginPage.loginToYandex(USERNAME, PASSWORD);
+        Assertions.assertTrue(loginPage.isInboxDisplayed());
     }
+    @Test
+    public void logoutFromMailTest(){
 
-    @AfterEach
-    public void cleanUp() {
-        driver.quit();
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginToYandex(USERNAME, PASSWORD);
+
+        Assertions.assertTrue(loginPage.isInboxDisplayed());
+        MailPage logoutPage = new MailPage();
+        logoutPage.clickLogout();
+        Assertions.assertTrue(logoutPage.isLoginButtonDisplayed());
     }
 }
 
