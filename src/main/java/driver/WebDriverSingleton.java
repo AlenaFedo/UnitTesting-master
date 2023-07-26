@@ -6,10 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 public class WebDriverSingleton {
-    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    private final static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private WebDriverSingleton() {
     }
+
     public static WebDriver getDriver() {
         if (driver.get() == null) {
             WebDriverManager.getInstance(ChromeDriver.class).setup();
@@ -17,6 +19,7 @@ public class WebDriverSingleton {
         }
         return driver.get();
     }
+
     public static void tearDown() {
         if (driver.get() != null) {
             driver.get().quit();

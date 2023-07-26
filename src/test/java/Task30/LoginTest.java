@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Test;
 
 public class LoginTest extends BaseTest {
 
-    public static final String USERNAME = "sea123alena";
-    public static final String PASSWORD = "Bazarevsky2";
+    private static final String USERNAME = "sea123alena";
+    private static final String PASSWORD = "Bazarevsky2";
 
-    private LoginPage loginPage;
     private MailPage mailPage;
 
     @BeforeEach
