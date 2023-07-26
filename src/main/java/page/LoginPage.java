@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LoginPage extends BasePage {
     public static final By LOGIN_BUTTON = By.linkText("Log in");
     public static final By USERNAME_FIELD = By.id("passp-field-login");
-    public static final By PASSWORD_FIELD = By.cssSelector("[data-t='field:input-passwd']");//By.className("Textinput-Control");
+    public static final By PASSWORD_FIELD = By.cssSelector("[data-t='field:input-passwd']");
     public static final By SUBMIT_BUTTON = By.cssSelector("[type='submit']");
     public static final By USER_NAME = By.linkText("sea123alena");
 
