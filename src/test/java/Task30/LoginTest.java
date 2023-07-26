@@ -1,33 +1,35 @@
 package Task30;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import page.LoginPage;
 import page.MailPage;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
 
-public class LoginTest extends BaseTest{
-    private WebDriver driver;
+public class LoginTest extends BaseTest {
+
     public static final String USERNAME = "sea123alena";
     public static final String PASSWORD = "Bazarevsky2";
 
-    @Test
-    public void loginToYandexMailTest(){
+    private LoginPage loginPage;
+    private MailPage mailPage;
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginToYandex(USERNAME, PASSWORD);
-        Assertions.assertTrue(loginPage.isInboxDisplayed());
+    @BeforeEach
+    public void login() {
+        loginPage = new LoginPage();
     }
+
     @Test
-    public void logoutFromMailTest(){
+    public void loginTest() {
+        mailPage = loginPage.loginToYandex(USERNAME, PASSWORD);
+        Assertions.assertTrue(mailPage.isInboxDisplayed());
+    }
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginToYandex(USERNAME, PASSWORD);
-
-        Assertions.assertTrue(loginPage.isInboxDisplayed());
-        MailPage logoutPage = new MailPage();
-        logoutPage.clickLogout();
-        Assertions.assertTrue(logoutPage.isLoginButtonDisplayed());
+    @Test
+    public void logoutFromMailTest() {
+        mailPage = loginPage.loginToYandex(USERNAME, PASSWORD);
+        loginPage = mailPage.clickLogout();
+        Assertions.assertTrue(loginPage.isLoginButtonDisplayed());
     }
 }
 

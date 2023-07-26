@@ -4,22 +4,23 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.concurrent.TimeUnit;
 
 public class WebDriverSingleton {
+    protected static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static WebDriver driver;
-
-    private WebDriverSingleton(){
-        System.out.println(" WebDriverSingleton constructor is called ");
+    private WebDriverSingleton() {
     }
-    public static WebDriver getInstance() {
-        if (driver == null) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();//WebDriverSingleton.getInstance();
-            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    public static WebDriver getDriver() {
+        if (driver.get() == null) {
+            WebDriverManager.getInstance(ChromeDriver.class).setup();
+            driver.set(new ChromeDriver());
         }
-        return driver;
+        return driver.get();
     }
-
+    public static void tearDown() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
+    }
 }
