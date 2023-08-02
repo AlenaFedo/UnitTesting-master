@@ -1,24 +1,29 @@
 package page;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MailPage extends BasePage {
-
-    private static final By USER_NAME = By.cssSelector("a.user-account_left-name >.user-account__name");
-    private static final By INBOX = By.xpath("//a[contains(@aria-label, 'Inbox')]");
-    private static final By LOGOUT = By.xpath("//a[contains(@aria-label, 'Log out')]");
+    @FindBy(css = "a.user-account_left-name >.user-account__name")
+    private WebElement userName;
+    @FindBy(xpath = "//a[contains(@aria-label, 'Inbox')]")
+    private WebElement inbox;
+    @FindBy(xpath = "//a[contains(@aria-label, 'Log out')]")
+    private WebElement logout;
 
     public MailPage() {
         PageFactory.initElements(driver, this);
     }
+
     public LoginPage clickLogout() {
-        driver.findElement(USER_NAME).click();
-        driver.findElement(LOGOUT).click();
+
+        userName.click();
+        logout.click();
         return new LoginPage();
     }
 
     public boolean isInboxDisplayed() {
-        return driver.findElement(INBOX).isDisplayed();
+        return inbox.isDisplayed();
     }
 }
