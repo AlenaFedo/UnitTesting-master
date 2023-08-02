@@ -1,6 +1,7 @@
 package page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 
 public class MailPage extends BasePage {
 
@@ -8,6 +9,9 @@ public class MailPage extends BasePage {
     private static final By INBOX = By.xpath("//a[contains(@aria-label, 'Inbox')]");
     private static final By LOGOUT = By.xpath("//a[contains(@aria-label, 'Log out')]");
 
+    public MailPage() {
+        PageFactory.initElements(driver, this);
+    }
     public LoginPage clickLogout() {
         driver.findElement(USER_NAME).click();
         driver.findElement(LOGOUT).click();

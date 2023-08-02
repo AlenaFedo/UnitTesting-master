@@ -1,6 +1,7 @@
 package page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
@@ -9,6 +10,10 @@ public class LoginPage extends BasePage {
     private static final By PASSWORD_FIELD = By.cssSelector("[data-t='field:input-passwd']");
     private static final By SUBMIT_BUTTON = By.cssSelector("[type='submit']");
     private static final By USER_NAME = By.linkText("sea123alena");
+
+    public LoginPage() {
+        PageFactory.initElements(driver, this);
+    }
 
     public LoginPage typeUsername(String username) {
         driver.findElement(USERNAME_FIELD).sendKeys(username);
