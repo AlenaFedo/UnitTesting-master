@@ -1,6 +1,5 @@
 package page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,37 +7,38 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage extends BasePage {
 
     @FindBy(linkText = "Log in")
-    private WebElement login_button;
+    private WebElement loginButton;
+
     @FindBy(id = "passp-field-login")
-    private WebElement username_field;
+    private WebElement usernameField;
+
     @FindBy(css = "[data-t='field:input-passwd']")
-    private WebElement password_fied;
+    private WebElement passwordFied;
+
     @FindBy(css = "[type='submit']")
-    private WebElement submit_button;
-    @FindBy(linkText = "sea123alena")
-    private  WebElement user_name;
+    private WebElement submitButton;
 
     public LoginPage() {
         PageFactory.initElements(driver, this);
     }
 
     public LoginPage typeUsername(String username) {
-        username_field.sendKeys(username);
+        usernameField.sendKeys(username);
         return this;
     }
 
     public LoginPage typePassword(String password) {
-        password_fied.sendKeys(password);
+        passwordFied.sendKeys(password);
         return this;
     }
 
     public LoginPage clickSubmit() {
-        submit_button.click();
+        submitButton.click();
         return this;
     }
 
     public LoginPage clickLogin() {
-        login_button.click();
+        loginButton.click();
         return this;
     }
 
@@ -52,7 +52,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginButtonDisplayed() {
-        return login_button.isDisplayed();
+        return loginButton.isDisplayed();
     }
 }
 

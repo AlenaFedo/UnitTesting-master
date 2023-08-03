@@ -7,8 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 public class MailPage extends BasePage {
     @FindBy(css = "a.user-account_left-name >.user-account__name")
     private WebElement userName;
+
     @FindBy(xpath = "//a[contains(@aria-label, 'Inbox')]")
     private WebElement inbox;
+
     @FindBy(xpath = "//a[contains(@aria-label, 'Log out')]")
     private WebElement logout;
 
