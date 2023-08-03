@@ -5,6 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class MailPage extends BasePage {
+
     @FindBy(css = "a.user-account_left-name >.user-account__name")
     private WebElement userName;
 
@@ -19,7 +20,6 @@ public class MailPage extends BasePage {
     }
 
     public LoginPage clickLogout() {
-
         userName.click();
         logout.click();
         return new LoginPage();
