@@ -1,32 +1,44 @@
 package page;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
-    private static final By LOGIN_BUTTON = By.linkText("Log in");
-    private static final By USERNAME_FIELD = By.id("passp-field-login");
-    private static final By PASSWORD_FIELD = By.cssSelector("[data-t='field:input-passwd']");
-    private static final By SUBMIT_BUTTON = By.cssSelector("[type='submit']");
-    private static final By USER_NAME = By.linkText("sea123alena");
+    @FindBy(linkText = "Log in")
+    private WebElement loginButton;
+
+    @FindBy(id = "passp-field-login")
+    private WebElement usernameField;
+
+    @FindBy(css = "[data-t='field:input-passwd']")
+    private WebElement passwordFied;
+
+    @FindBy(css = "[type='submit']")
+    private WebElement submitButton;
+
+    public LoginPage() {
+        PageFactory.initElements(driver, this);
+    }
 
     public LoginPage typeUsername(String username) {
-        driver.findElement(USERNAME_FIELD).sendKeys(username);
+        usernameField.sendKeys(username);
         return this;
     }
 
     public LoginPage typePassword(String password) {
-        driver.findElement(PASSWORD_FIELD).sendKeys(password);
+        passwordFied.sendKeys(password);
         return this;
     }
 
     public LoginPage clickSubmit() {
-        driver.findElement(SUBMIT_BUTTON).click();
+        submitButton.click();
         return this;
     }
 
     public LoginPage clickLogin() {
-        driver.findElement(LOGIN_BUTTON).click();
+        loginButton.click();
         return this;
     }
 
@@ -40,7 +52,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginButtonDisplayed() {
-        return driver.findElement(LOGIN_BUTTON).isDisplayed();
+        return loginButton.isDisplayed();
     }
 }
 
