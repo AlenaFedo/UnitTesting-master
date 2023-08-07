@@ -17,7 +17,7 @@ public class BaseTest {
         WebDriver driver = WebDriverSingleton.getDriver();
         driver.manage().window().maximize();
         driver.get(SITE_NAME);
-        ScreenShot.makeScreenShot(driver, "C://ScreenShots//HomePage.png");
+        ScreenShot.makeScreenShot(driver, "HomePage.png");
         loginPage = new LoginPage();
     }
 
