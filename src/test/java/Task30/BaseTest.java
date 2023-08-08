@@ -5,7 +5,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import page.LoginPage;
-import screenShot.ScreenShot;
 
 public class BaseTest {
 
@@ -17,7 +16,6 @@ public class BaseTest {
         WebDriver driver = WebDriverSingleton.getDriver();
         driver.manage().window().maximize();
         driver.get(SITE_NAME);
-        ScreenShot.makeScreenShot(driver, "HomePage.png");
         loginPage = new LoginPage();
     }
 

@@ -1,23 +1,23 @@
 package screenShot;
 
+import driver.WebDriverSingleton;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ScreenShot {
 
-    private static String path = "C://ScreenShots//";
+    private static final String PATH = "target/screenshots/";
 
-    public static void makeScreenShot(WebDriver webdriver, String filePart) {
-        TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+    public static void makeScreenShot(String filePart) {
+        TakesScreenshot scrShot = ((TakesScreenshot) WebDriverSingleton.getDriver());
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        String fileWithPath = path + generateFileName(filePart);
+        String fileWithPath = PATH + generateFileName(filePart);
         File DestFile = new File(fileWithPath);
         try {
             FileUtils.copyFile(SrcFile, DestFile);
