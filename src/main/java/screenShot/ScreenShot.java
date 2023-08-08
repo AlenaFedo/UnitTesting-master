@@ -16,11 +16,11 @@ public class ScreenShot {
 
     public static void makeScreenShot(String filePart) {
         TakesScreenshot scrShot = ((TakesScreenshot) WebDriverSingleton.getDriver());
-        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+        File drcFile = scrShot.getScreenshotAs(OutputType.FILE);
         String fileWithPath = PATH + generateFileName(filePart);
-        File DestFile = new File(fileWithPath);
+        File destFile = new File(fileWithPath);
         try {
-            FileUtils.copyFile(SrcFile, DestFile);
+            FileUtils.copyFile(drcFile, destFile);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -28,7 +28,7 @@ public class ScreenShot {
 
     public static String generateFileName(String filePart) {
         LocalDateTime time = LocalDateTime.now();
-        String timePrefix = DateTimeFormatter.ofPattern("yyyyMMddHHmmss").format(time);
+        String timePrefix = DateTimeFormatter.ofPattern("yyyy_MM_dd_HHmmss").format(time);
         return "screenshot_" + filePart + timePrefix + ".png";
     }
 }

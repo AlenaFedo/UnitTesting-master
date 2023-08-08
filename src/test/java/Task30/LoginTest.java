@@ -20,8 +20,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void loginTest(){
-        ScreenShot.makeScreenShot(homePage);
+    public void loginTest() {
+        ScreenShot.makeScreenShot("loginTest_" + homePage);
         mailPage = loginPage.loginToYandex(USERNAME, PASSWORD);
         Assertions.assertTrue(mailPage.isInboxDisplayed());
     }
