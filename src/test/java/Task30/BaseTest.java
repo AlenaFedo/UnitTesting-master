@@ -5,8 +5,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import page.LoginPage;
-import page.MailPage;
-
 
 public class BaseTest {
 
@@ -14,7 +12,7 @@ public class BaseTest {
     protected LoginPage loginPage;
 
     @BeforeEach
-    public void init() {
+    public void init(){
         WebDriver driver = WebDriverSingleton.getDriver();
         driver.manage().window().maximize();
         driver.get(SITE_NAME);
